@@ -4,8 +4,9 @@
     <title>Master Automotive Training</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="fonts/icomoon/style.css">
 
@@ -389,14 +390,48 @@ We have a team of instructors with many years of experience in the smog and auto
       </div>
     </div>
 
-    
 
+  <!--PayPal Payment Form-->
+  <div class="site-section bg-light" id="contact-section" style="height: 50vh">
+  <div class="w3-container">
+    {{--I chose to put the alerts here, so that you can see it. You should put it at the top of the page, where user can see it clearly, when page loads--}}
+    @if ($message = Session::get('success'))
+      <div class="w3-panel w3-green w3-display-container">
+            <span onclick="this.parentElement.style.display='none'"
+                  class="w3-button w3-green w3-large w3-display-topright">&times;</span>
+        <p>{!! $message !!}</p>
+      </div>
+      <?php Session::forget('success');?>
+    @endif
 
+    @if ($message = Session::get('error'))
+      <div class="w3-panel w3-red w3-display-container">
+            <span onclick="this.parentElement.style.display='none'"
+                  class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+        <p>{!! $message !!}</p>
+      </div>
+      <?php Session::forget('error');?>
+    @endif
+
+    <form class="w3-container w3-display-middle w3-card-4 w3-padding-16" method="POST" id="payment-form"
+          action="{!! URL::to('paypal') !!}">
+      {{ csrf_field() }}
+      <h2 class="w3-text-blue">MAT Payment</h2>
+      <p>Make secured payments to enjoy our service</p>
+      <label class="w3-text-blue"><b>Enter Amount($)</b></label>
+      <input class="w3-input w3-border" id="amount" type="text" name="amount" value="10"></p>
+      <button class="w3-btn w3-blue">Pay with PayPal</button>
+    </form>
+  </div>
+  </div>
+  <!--End of PayPal Payment Form-->
 
     <div class="site-section bg-light" id="contact-section">
       <div class="container">
-
         <div class="row justify-content-center">
+          <div class="col-md-7">
+
+          </div>
           <div class="col-md-7">
 
 
